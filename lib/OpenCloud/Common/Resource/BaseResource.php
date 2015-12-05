@@ -162,8 +162,9 @@ abstract class BaseResource extends Base
             $url = Url::factory($url);
         }
 
-        //return $url->addPath((string) $path)->setQuery($query);
-        return str_replace('http:', 'https:', $url->addPath((string) $path)->setQuery($query));
+        $oldReturn = $url->addPath((string) $path)->setQuery($query);
+        $oldReturn->setScheme('https');
+        return $oldReturn;
     }
 
     /**
